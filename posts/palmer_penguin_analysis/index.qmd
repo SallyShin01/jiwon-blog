@@ -3,6 +3,7 @@ title: "Palmer Penguin Analysis"
 author: "Jiwon Shin"
 jupyter: python3
 categories: [news, code, analysis]
+image: "penguin.png"
 ---
 
 
