@@ -1,9 +1,8 @@
 ---
 title: "Palmer Penguin Analysis"
 author: "Jiwon Shin"
-date: "2025-03-07"
+jupyter: python3
 categories: [news, code, analysis]
-image: "image.jpg"
 ---
 
 
