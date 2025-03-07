@@ -5,7 +5,7 @@ jupyter: python3
 categories: [news, code, analysis]
 image: "penguin.jpg"
 ---
-
+Palmer Penguin 종별 분석
 
 # Palmerpenguins Data Analysis
 
