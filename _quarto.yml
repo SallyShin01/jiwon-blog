@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Jiwon Qmd 블로그그"
+  title: "Jiwon Qmd 블로그"
   navbar:
     right:
       - about.qmd
