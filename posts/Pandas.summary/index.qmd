@@ -2,7 +2,7 @@
 title: "Pandas 개념정리"
 date : "2025-03-10"
 author: "Jiwon Shin"
-categories: [news, code, analysis]
+categories: [news, code]
 image: "Pandas-logo.webp"
 ---
 

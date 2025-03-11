@@ -2,7 +2,7 @@
 title: "Palmer Penguin Analysis"
 date : "2025-03-07"
 author: "Jiwon Shin"
-categories: [news, code, analysis]
+categories: [news, code]
 image: "penguin.jpg"
 ---
 Palmer Penguin 종별 분석
