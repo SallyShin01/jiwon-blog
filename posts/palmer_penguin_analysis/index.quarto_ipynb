@@ -1,0 +1,485 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Palmer Penguin Analysis\"\n",
+        "date : \"2025-03-07\"\n",
+        "author: \"Jiwon Shin\"\n",
+        "categories: [news, code]\n",
+        "image: \"penguin.jpg\"\n",
+        "---\n",
+        "\n",
+        "Palmer Penguin 종별 분석\n",
+        "\n",
+        "# Palmerpenguins Data Analysis\n",
+        "\n",
+        "## 문제 : 각 펭귄 종별 특징 알아내기.\n",
+        "\n",
+        "-   데이터 불러오기\n"
+      ],
+      "id": "1ebe65df"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "from palmerpenguins import load_penguins\n",
+        "penguins = load_penguins()\n",
+        "penguins.info()\n",
+        "df=penguins # 편의상 df 변수 사용."
+      ],
+      "id": "fbc6f544",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   데이터 분석을 위해 `df` 에 어떤 데이터가 있는지 확인한다.\n"
+      ],
+      "id": "eaefa920"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df"
+      ],
+      "id": "77849768",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   종과 colomm에 따른 데이터 분류\n",
+        "\n",
+        "1.  각 종별 서식지 분포\n",
+        "2.  각 종별 테어난 연도 분포\n",
+        "3.  각 종별 부리의 길이\n",
+        "4.  각 종별 성별\n",
+        "5.  각 종별 지느러미\n",
+        "6.  각 종별 무게\n",
+        "\n",
+        "*담당 자: 신태선*\n",
+        "\n",
+        "-   종의 종류와 개수를 파악한다.\n"
+      ],
+      "id": "caaee11f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# 종의 종류\n",
+        "unique_species = df['species'].unique()\n",
+        "print(f\"Species의 종류: {unique_species}\")\n",
+        "# 종의 개수 \n",
+        "num_species = df['species'].nunique()\n",
+        "print(f\"Species의 종류 개수: {num_species}\")"
+      ],
+      "id": "a91b1eb2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   총 3개의 종의 Data Fram을 나누어 저장한다.\n"
+      ],
+      "id": "0e432644"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "adelie = df[df['species']== 'Adelie']\n",
+        "chinstrap = df[df['species']== 'Chinstrap']\n",
+        "gentoo = df[df['species']== 'Gentoo']"
+      ],
+      "id": "f67bf487",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   각 종별 서식지 분포\n"
+      ],
+      "id": "6bf18f65"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "adelie_island_counts = adelie['island'].value_counts()\n",
+        "adelie_island_counts.name = 'Adelie_island'\n",
+        "\n",
+        "chinstrap_island_counts = chinstrap['island'].value_counts()\n",
+        "chinstrap_island_counts.name = 'Chinstrap_island'\n",
+        "\n",
+        "gentoo_island_counts = gentoo['island'].value_counts()\n",
+        "gentoo_island_counts.name = 'Gentoo_island'\n",
+        "\n",
+        "# 병합\n",
+        "penguins_island_df = pd.concat([adelie_island_counts, chinstrap_island_counts, gentoo_island_counts], axis=1).fillna(0)\n",
+        "penguins_island_df"
+      ],
+      "id": "bdcc07d3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   Adelie는 152마리 중 Dream에 56 마리, Torgersen에 52마리, Biscoe에 44마리 서식중이다.\n",
+        "\n",
+        "-   Chinstrap은 68마리 중 Dream에서만 68마리 서식중이다.\n",
+        "\n",
+        "-   Gentoo는 124마리 중 Biscoe 지역에서만 124마리 서식중이다.\n",
+        "\n",
+        "> 추론\n",
+        ">\n",
+        "> Adelie 펭귄은 **가장 넓은 환경에서 생존이 가능**하므로, 다양한 환경 변화에도 적응할 가능성이 높다.\n",
+        "\n",
+        "-   각 종별 태어난 연도 분포\n"
+      ],
+      "id": "33b7e46c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "adelie_year_counts = adelie['year'].value_counts()\n",
+        "adelie_year_counts.name = 'Adelie_year'\n",
+        "\n",
+        "gentoo_year_counts = gentoo['year'].value_counts()\n",
+        "gentoo_year_counts.name = 'Gentoo_year'\n",
+        "\n",
+        "chinstrap_year_counts = chinstrap['year'].value_counts()\n",
+        "chinstrap_year_counts.name = 'Chinstrap_year'\n",
+        "\n",
+        "penguins_year_df = pd.concat([adelie_year_counts, gentoo_year_counts, chinstrap_year_counts], axis=1)\n",
+        "penguins_year_df"
+      ],
+      "id": "dc390255",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "> 추론\n",
+        ">\n",
+        "> 2007\\~2009년 사이에\n",
+        ">\n",
+        "> Adelie는 출생 개체 수가 비슷하다. 환경적 요인의 변화가 적었던것 같다.\n",
+        ">\n",
+        "> Gentoo는 2007년 출생 개체 수가 가장 낮고, 다른 년도와 비교했을때 차이가 10이상으로 크다. 2007년 출생을 결정하는 환경적 요인 변화가 컸을 가능성이 있다.\n",
+        ">\n",
+        "> Chinstrap은 2008년 출생 개체 수가 가장 낮고, 다른 년도와 비교했을 때 차이가 크다. 2008년 출생을 결정하는 환경적인 요인 변화가 컸을 가능성이 있다.\n",
+        "\n",
+        "# 신인철\n",
+        "\n",
+        "![gentoo 펭귄](https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2FdrTsfbfFLZ9svOAHZ0f5jXdiGvU6ap6hzdXqwon9NfcGIb-DpS68i91AMNdeZlMQGrkT2e1BJ3YMkOil4ArYuQ.webp&type=sc960_832)\n",
+        "\n",
+        "![Chinstrap 펭귄](https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi3.ruliweb.com%2Fimg%2F20%2F01%2F22%2F16fcc4abb051bbf06.jpg&type=sc960_832)\n",
+        "\n",
+        "![adelie 펭귄](https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.namu.wiki%2Fi%2Fyy9GM91w2J3gcWKiD0AxwmIWWX7lhu9LmF3KGk13rNBu1BTz72Bdu3qu62cf9Xc5sfYzT9G8c3f-8X3eDgGDZA.webp&type=sc960_832)\n",
+        "\n",
+        "## 각 종별 부리의 길이\n",
+        "\n",
+        "## 각 종별 성별\n",
+        "\n",
+        "## bill length = 부리의길이 bill depth = 부리 깊이\n",
+        "\n",
+        "## 펭귄 성별에 따라 개체수 구하기\n"
+      ],
+      "id": "d8d7580b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "nan_penguins = penguins['sex'].isna().sum()\n",
+        "female_adelie = penguins.loc[(penguins['species'] == 'Adelie') & (penguins['sex']==\"female\")].shape[0]\n",
+        "male_adelie = penguins.loc[(penguins['species'] == 'Adelie') & (penguins['sex']==\"male\")].shape[0]\n",
+        "female_gentoo = penguins.loc[(penguins['species'] == 'Gentoo') & (penguins['sex']==\"female\")].shape[0]\n",
+        "male_gentoo = penguins.loc[(penguins['species'] == 'Gentoo') & (penguins['sex']==\"male\")].shape[0]\n",
+        "female_chinstrap = penguins.loc[(penguins['species'] == 'Chinstrap') & (penguins['sex']==\"female\")].shape[0]\n",
+        "male_chinstrap = penguins.loc[(penguins['species'] == 'Chinstrap') & (penguins['sex']==\"male\")].shape[0]"
+      ],
+      "id": "c4bb855a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 개체수 print함수 이용하여 정리하기\n"
+      ],
+      "id": "b4449a86"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#각 종의 암컷, 수컷의 개체수\n",
+        "print(\"Adelie 암컷의 수 : \",female_adelie,'Adelie 수컷의 수 : ',male_adelie, 'Gentoo 암컷의 수 : ',female_gentoo,\n",
+        "      'Gentoo 수컷의 수 : ', male_gentoo, 'Chinstrap 암컷의 수 :', female_chinstrap, 'Chinstrap 수컷의 수 : ' ,male_chinstrap\n",
+        "      ,'구별불가 펭귄의 수 : ', nan_penguins)"
+      ],
+      "id": "b9806fac",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 결론 : Adelie, gentoo, chinstrap순으로 펭귄 숫자가 많았고 모든펭귄에서 동등한 성비를 가졌다.\n",
+        "\n",
+        "## 종별 부리 깊이 구분짓기\n"
+      ],
+      "id": "66c4f570"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#종별 구분짓기 A는 아델리\n",
+        "adelie = penguins.loc[(penguins['species'] == 'Adelie'),['bill_depth_mm']]\n",
+        "gentoo = penguins.loc[(penguins['species'] == 'Gentoo'),['bill_depth_mm']]\n",
+        "chinstrap = penguins.loc[(penguins['species'] == 'Chinstrap'),['bill_depth_mm']]\n",
+        "adelie_d =  adelie.describe()\n",
+        "gentoo_d = gentoo.describe()\n",
+        "chinstrap_d = chinstrap.describe()"
+      ],
+      "id": "f68c05a6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## .describe()이용하여 부리깊이 구하기\n"
+      ],
+      "id": "899dce97"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "adelie_d.index = ['표본개수', '평균','표준편차','최솟값','25%','50%','75%','최대값']\n",
+        "gentoo_d.index = ['표본개수', '평균','표준편차','최솟값','25%','50%','75%','최대값']\n",
+        "chinstrap_d.index = ['표본개수', '평균','표준편차','최솟값','25%','50%','75%','최대값']"
+      ],
+      "id": "8c287068",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "adelie_d.rename(columns={'bill_depth_mm': '부리깊이'})"
+      ],
+      "id": "66eed3ef",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "gentoo_d.rename(columns={'bill_depth_mm': '부리깊이'})"
+      ],
+      "id": "8480018c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "chinstrap_d.rename(columns={'bill_depth_mm': '부리깊이'})"
+      ],
+      "id": "5fb5b466",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 결론 : chinstrap 펭귄이 평균 18.42mm으로 가장 깊은 부리를 가졌고 gentoo 펭귄이 14.98mm로 가장 얕은 부리를 가졌다\n",
+        "\n",
+        "## \n",
+        "\n",
+        "# Penguin data 분석 설명 - 6조\n"
+      ],
+      "id": "110640db"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "from palmerpenguins import load_penguins\n",
+        "penguins = load_penguins()\n",
+        "penguins.info()\n",
+        "df=penguins\n",
+        "df\n",
+        "\n",
+        "# 종별로 데이터를 나눔!\n",
+        "gentoo = penguins[penguins['species'] == \"Gentoo\"] # 124개의 데이터\n",
+        "chinstrap = penguins[penguins['species'] == \"Chinstrap\"]  # 68개의 데이터\n",
+        "adelie = penguins[penguins['species'] == \"Adelie\"]  # 152개 데이터"
+      ],
+      "id": "d2ccdfb9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 각 종별 지느러미 분석\n"
+      ],
+      "id": "e7700177"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# flipper_length_mm\n",
+        "\n",
+        "# 'flipper_length_mm' 컬럼에 대한 describe() 결과\n",
+        "g_flipper_desc = gentoo['flipper_length_mm'].describe()\n",
+        "a_flipper_desc = adelie['flipper_length_mm'].describe()\n",
+        "c_flipper_desc = chinstrap['flipper_length_mm'].describe()\n",
+        "\n",
+        "# 평균, 최대값, 최소값 추출\n",
+        "mean_val = g_flipper_desc['mean']\n",
+        "max_val = g_flipper_desc['max']\n",
+        "min_val = g_flipper_desc['min']\n",
+        "\n",
+        "mean_val_a = a_flipper_desc['mean']\n",
+        "max_val_a = a_flipper_desc['max']\n",
+        "min_val_a = a_flipper_desc['min']\n",
+        "\n",
+        "mean_val_c = c_flipper_desc['mean']\n",
+        "max_val_c = c_flipper_desc['max']\n",
+        "min_val_c = c_flipper_desc['min']\n",
+        "\n",
+        "# gentoo\n",
+        "print(f\"Gentoo의 flipper_length의 평균: {mean_val}, 최대값: {max_val}, 최소값: {min_val}\")\n",
+        "\n",
+        "# adelie\n",
+        "print(f\"Adelie의 flipper_length의 평균: {mean_val_a}, 최대값: {max_val_a}, 최소값: {min_val_a}\")\n",
+        "\n",
+        "# chinstrap\n",
+        "print(f\"Chinstrap의 flipper_length의 평균: {mean_val_c}, 최대값: {max_val_c}, 최소값: {min_val_c}\")\n"
+      ],
+      "id": "42fcc2e4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "|                    | Gentoo  | Adelie  | Chinstrap |\n",
+        "|--------------------|---------|---------|-----------|\n",
+        "| 평균 지느러미 길이 | 217.187 | 189.954 | 195.824   |\n",
+        "| 최대 지느러미 길이 | 231     | 210     | 212       |\n",
+        "| 최소 지느러미 길이 | 203     | 172     | 178       |\n",
+        "\n",
+        "### 지느러미 분석 결과\n",
+        "\n",
+        "-   평균적으로 보았을때, Gentoo가 보통 가장 긴 지느러미 길이를 가지고 있다.\n",
+        "\n",
+        "-   최대 지느러미 길이 역시 Gentoo가 가지고 있다.\n",
+        "\n",
+        "-   가장 짧은 지느러미 길이를 가지고 있는 종은 Adelie이다.\n",
+        "\n",
+        "## 각 종별 몸무게 분석\n"
+      ],
+      "id": "93d15759"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# body_mass_g\n",
+        "g_body_desc = gentoo['body_mass_g'].describe()\n",
+        "a_body_desc = adelie['body_mass_g'].describe()\n",
+        "c_body_desc = chinstrap['body_mass_g'].describe()\n",
+        "\n",
+        "# 평균, 최대값, 최소값 추출\n",
+        "mean_val = g_body_desc['mean']\n",
+        "max_val = g_body_desc['max']\n",
+        "min_val = g_body_desc['min']\n",
+        "\n",
+        "mean_val_a = a_body_desc['mean']\n",
+        "max_val_a = a_body_desc['max']\n",
+        "min_val_a = a_body_desc['min']\n",
+        "\n",
+        "mean_val_c = c_body_desc['mean']\n",
+        "max_val_c = c_body_desc['max']\n",
+        "min_val_c = c_body_desc['min']\n",
+        "\n",
+        "# gentoo\n",
+        "print(f\"Gentoo의 body_mass의 평균: {mean_val}, 최대값: {max_val}, 최소값: {min_val}\")\n",
+        "\n",
+        "# adelie\n",
+        "print(f\"Adelie의 body_mass의 평균: {mean_val_a}, 최대값: {max_val_a}, 최소값: {min_val_a}\")\n",
+        "\n",
+        "# chinstrap\n",
+        "print(f\"Chinstrap의 body_mass의 평균: {mean_val_c}, 최대값: {max_val_c}, 최소값: {min_val_c}\")"
+      ],
+      "id": "0140f3d2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "|             | Gentoo   | Adelie   | Chinstrap |\n",
+        "|-------------|----------|----------|-----------|\n",
+        "| 평균 몸무게 | 5076.016 | 3700.662 | 3733.088  |\n",
+        "| 최대 몸무게 | 6300     | 4775     | 4800      |\n",
+        "| 최소 몸무게 | 3950     | 2850     | 2700      |\n",
+        "\n",
+        "### 몸무게 분석 결과\n",
+        "\n",
+        "-   평균,최대,최소 몸무게를 다 비교해보았을때, 가장 무거운 무게를 가진 종은 Gentoo 종이다.\n",
+        "\n",
+        "-   Chinstrap 종이 가장 가벼운 몸무게를 가지고 있는 것을 알 수 있다."
+      ],
+      "id": "91d73b25"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -7,6 +7,7 @@ image: "Pandas-logo.webp"
 ---
 
 ## 날짜 및 문자형 변수 다루기
+Pandas string 개념정리!!
 
 ### 날짜와 시간 다루기
 ```{python}
