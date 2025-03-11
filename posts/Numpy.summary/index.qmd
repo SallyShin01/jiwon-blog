@@ -3,9 +3,8 @@ title: "NumPy 개념정리"
 date : "2025-03-07"
 author: "Jiwon Shin"
 categories: [news, code, analysis]
-image: "NumPy-and-Python.avif"
+image : 'NumPy-and-Python.avif'
 ---
-
 Numpy 개념정리!!
 
 ## 넘파이 활용하기(배운것 정리)

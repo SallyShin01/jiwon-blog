@@ -3,7 +3,6 @@ title: "나의 첫 블로그 포스트"
 author: "Jiwon Shin"
 date : "2025-03-07"
 categories: [python, pandas, numpy]
-image: ""
 ---
 
 ## 파이썬 데이터 분석
