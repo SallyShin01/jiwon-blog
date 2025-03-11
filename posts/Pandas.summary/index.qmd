@@ -349,10 +349,10 @@ print(df.mean(numeric_only = True))
 
 ```{python}
 # 'species' 열을 기준으로 그룹화하여 평균 계산
-grouped_df = penguins.groupby('species').mean(numeric_only = True)
+grouped_df = df.groupby('species').mean(numeric_only = True)
 print(grouped_df)
 
-penguins.groupby('island').mean(numeric_only=True)
+df.groupby('island').mean(numeric_only=True)
 ```
 
 sum() - 데이터 프레임의 합계 계산
@@ -363,7 +363,7 @@ print(df.sum(numeric_only = True))
 
 ```{python}
 # 최대 부리길이 60인 펭귄은 몇마리?
-sum(penguins['bill_length_mm'] == 60.0)
+sum(df['bill_length_mm'] == 60.0)
 ```
 
 
@@ -380,12 +380,12 @@ pd.merge(midterm, final, on = 'id', how = 'outer')
 
 * 1 성별, 섬별 부리길이 평균계산
 ```{python}
-bill_length = penguins.groupby(["sex","island"], as_index = False)['bill_length_mm'].mean(numeric_only=True)
+bill_length = df.groupby(["sex","island"], as_index = False)['bill_length_mm'].mean(numeric_only=True)
 ```
 
 * 2. 성별, 섬별 부리깊이 평균계산
 ```{python}
-bill_depth = penguins.groupby(['sex','island'], as_index = False)['bill_depth_mm'].mean(numeric_only=True)
+bill_depth = df.groupby(['sex','island'], as_index = False)['bill_depth_mm'].mean(numeric_only=True)
 ```
 
 * 3. 1.2 단계 데이터 프레임 병합해서 성별, 섬별, 부리길이,깊이 데이터 프레임 만들기
