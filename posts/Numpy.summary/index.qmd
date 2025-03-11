@@ -6,9 +6,9 @@ categories: [news, code, analysis]
 image: "NumPy-and-Python.avif"
 ---
 
+Numpy 개념정리!!
+
 ## 넘파이 활용하기(배운것 정리)
- 
- Numpy 개념정리!!
 
 ### NumPy 배열 생성
 
