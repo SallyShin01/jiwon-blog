@@ -186,7 +186,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bnVtcHk=">numpy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFuZGFz">pandas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(5)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bnVtcHk=">numpy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cGFuZGFz">pandas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -200,7 +200,55 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741532400000" data-listing-file-modified-sort="1741654777958" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1696">
+<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGU=" data-listing-date-sort="1741618800000" data-listing-file-modified-sort="1741666501168" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="98">
+<div class="thumbnail">
+<p><a href="./posts/Pandas-string.summary/index.html" class="no-external"></a></p><a href="./posts/Pandas-string.summary/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/Pandas-string.summary/Pandas-logo.webp" class="thumbnail-image"></p>
+</a><p><a href="./posts/Pandas-string.summary/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/Pandas-string.summary/index.html" class="no-external">Pandas string 개념정리</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/Pandas-string.summary/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">
+news
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
+code
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/Pandas-string.summary/index.html" class="no-external">
+
+<section id="날짜와-시간-다루기" class="level3">
+
+<div id="0fc586ef" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co"># 예제 데이터</span></span>
+<span id="cb1-2"><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-3"><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
+<span id="cb1-4"><span class="im">import</span> warnings </span>
+<span id="cb1-5">warnings.filterwarnings(<span class="st">"ignore"</span>, category<span class="op">=</span>pd.errors.SettingWithCopyWarning)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">data <span class="op">=</span> {</span>
+<span id="cb1-8">    <span class="st">'date'</span>: [<span class="st">'…</span><span class="st"></span><span class="st"></span></span><span id="cb1-9"><span class="st"></span><span class="dv"></span><span class="dv"></span><span class="dv"></span></span><span id="cb1-10"></span><span id="cb1-11"><span class="op"></span></span><span id="cb1-12"></span></code></pre></div><div class="cell-output cell-output-stdout"><pre><code></code></pre></div></div><section id="날짜-형식으로-변환" class="level4"><div id="df6aafb9" class="cell" data-execution_count="2"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co"></span></span><span id="cb3-2"><span class="co"></span></span><span id="cb3-3"><span class="st"></span><span class="op"></span><span class="st"></span></span><span id="cb3-4"><span class="bu"></span></span></code></pre></div><div class="cell-output cell-output-stdout"><pre><code></code></pre></div></div></section><section id="날짜-형식-변환시-주의사항" class="level4"><div id="1d062b8b" class="cell" data-execution_count="3"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co"></span></span><span id="cb5-2"><span class="st"></span></span><span id="cb5-3"><span class="st"></span></span><span id="cb5-4"><span class="st"></span></span><span id="cb5-5"><span class="st"></span></span><span id="cb5-6"></span><span id="cb5-7"><span class="co"></span></span><span id="cb5-8"><span class="st"></span><span class="bu"></span><span class="op"></span><span class="st"></span><span class="sc"></span><span class="st"></span></span><span id="cb5-9"><span class="st"></span><span class="bu"></span><span class="op"></span><span class="st"></span><span class="sc"></span><span class="st"></span></span></code></pre></div><div class="cell-output cell-output-display" data-execution_count="3"><pre><code></code></pre></div></div></section><section id="날짜-정보-추출" class="level4"><div id="86e982e7" class="cell" data-execution_count="4"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="op"></span><span class="st"></span></span><span id="cb7-2"><span class="bu"></span><span class="op"></span><span class="st"></span><span class="sc"></span><span class="st"></span></span><span id="cb7-3"></span><span id="cb7-4"></span><span id="cb7-5"></span><span id="cb7-6"></span><span id="cb7-7"></span></code></pre></div><div class="cell-output cell-output-display" data-execution_count="4"><pre><code></code></pre></div></div></section></section></a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/Pandas-string.summary/index.html" class="no-external">
+<div class="listing-date">
+Mar 11, 2025
+</div>
+<div class="listing-author">
+Jiwon Shin
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="bmV3cyUyQ2NvZGU=" data-listing-date-sort="1741532400000" data-listing-file-modified-sort="1741654960007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1696">
 <div class="thumbnail">
 <p><a href="./posts/Pandas.summary/index.html" class="no-external"></a></p><a href="./posts/Pandas.summary/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/Pandas.summary/Pandas-logo.webp" class="thumbnail-image"></p>
@@ -220,9 +268,6 @@ news
 <div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
 code
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">
-analysis
-</div>
 </div>
 <div class="listing-description">
 <a href="./posts/Pandas.summary/index.html" class="no-external">각 열에 있는 데이터 타입이 달라도 괜찮다!</a>
@@ -239,7 +284,7 @@ Jiwon Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="cHl0aG9uJTJDcGFuZGFzJTJDbnVtcHk=" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741654583794" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="13">
+<div class="quarto-post image-right" data-index="2" data-categories="cHl0aG9uJTJDcGFuZGFzJTJDbnVtcHk=" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741654583794" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="13">
 <div class="thumbnail">
 <p><a href="./posts/my-first-post/index.html" class="no-external"></a></p><a href="./posts/my-first-post/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/my-first-post" class="thumbnail-image"></p>
@@ -278,7 +323,7 @@ Jiwon Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741652388345" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1531">
+<div class="quarto-post image-right" data-index="3" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741652388345" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1531">
 <div class="thumbnail">
 <p><a href="./posts/Numpy.summary/index.html" class="no-external"></a></p><a href="./posts/Numpy.summary/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/Numpy.summary/NumPy-and-Python.avif" class="thumbnail-image"></p>
@@ -317,7 +362,7 @@ Jiwon Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741306967891" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="838">
+<div class="quarto-post image-right" data-index="4" data-categories="bmV3cyUyQ2NvZGU=" data-listing-date-sort="1741273200000" data-listing-file-modified-sort="1741654958365" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="838">
 <div class="thumbnail">
 <p><a href="./posts/palmer_penguin_analysis/index.html" class="no-external"></a></p><a href="./posts/palmer_penguin_analysis/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/palmer_penguin_analysis/penguin.jpg" class="thumbnail-image"></p>
@@ -337,9 +382,6 @@ news
 <div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
 code
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">
-analysis
-</div>
 </div>
 <div class="listing-description">
 <a href="./posts/palmer_penguin_analysis/index.html" class="no-external">Palmer Penguin 종별 분석</a>
@@ -356,7 +398,7 @@ Jiwon Shin
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741186800000" data-listing-file-modified-sort="1741252194556" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
+<div class="quarto-post image-right" data-index="5" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1741186800000" data-listing-file-modified-sort="1741252194556" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="12">
 <div class="thumbnail">
 <p><a href="./posts/post-with-code/index.html" class="no-external"></a></p><a href="./posts/post-with-code/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image"></p>
@@ -395,7 +437,7 @@ Harlow Malloc
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="bmV3cw==" data-listing-date-sort="1740927600000" data-listing-file-modified-sort="1741252206476" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
+<div class="quarto-post image-right" data-index="6" data-categories="bmV3cw==" data-listing-date-sort="1740927600000" data-listing-file-modified-sort="1741252206476" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
 <div class="thumbnail">
 <p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
 <p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
