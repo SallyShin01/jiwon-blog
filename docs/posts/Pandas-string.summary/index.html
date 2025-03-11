@@ -186,9 +186,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="날짜-및-문자형-변수-다루기" class="level2">
 <h2 class="anchored" data-anchor-id="날짜-및-문자형-변수-다루기">날짜 및 문자형 변수 다루기</h2>
+<p>Pandas string 개념정리!!</p>
 <section id="날짜와-시간-다루기" class="level3">
 <h3 class="anchored" data-anchor-id="날짜와-시간-다루기">날짜와 시간 다루기</h3>
-<div id="0fc586ef" class="cell" data-execution_count="1">
+<div id="1d2d61cb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 예제 데이터</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  </span>
@@ -215,7 +216,7 @@ memory usage: 180.0+ bytes</code></pre>
 </div>
 <section id="날짜-형식으로-변환" class="level4">
 <h4 class="anchored" data-anchor-id="날짜-형식으로-변환">날짜 형식으로 변환</h4>
-<div id="df6aafb9" class="cell" data-execution_count="2">
+<div id="e0d5aeb3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 문자열을 날짜 형식으로 변환</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to_datetime() 활용하여 날짜 형식 변환</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
@@ -229,7 +230,7 @@ dtype: object</code></pre>
 </section>
 <section id="날짜-형식-변환시-주의사항" class="level4">
 <h4 class="anchored" data-anchor-id="날짜-형식-변환시-주의사항">날짜 형식 변환시 주의사항</h4>
-<div id="1d062b8b" class="cell" data-execution_count="3">
+<div id="f18f1ddf" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 올바른 형식</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(<span class="st">'03-11-2025'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(<span class="st">'2025-03-11'</span>)</span>
@@ -246,7 +247,7 @@ dtype: object</code></pre>
 </section>
 <section id="날짜-정보-추출" class="level4">
 <h4 class="anchored" data-anchor-id="날짜-정보-추출">날짜 정보 추출</h4>
-<div id="86e982e7" class="cell" data-execution_count="4">
+<div id="e6718c7d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dt_obj <span class="op">=</span> pd.to_datetime(<span class="st">'2025년 03월 11일'</span>,</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                        <span class="bu">format</span><span class="op">=</span><span class="st">'%Y년 %m월 </span><span class="sc">%d</span><span class="st">일'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>dt_obj.year</span>
