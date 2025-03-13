@@ -1,0 +1,262 @@
+---
+title: "Pandas 연습문제제"
+date : "2025-03-13"
+author: "Jiwon Shin"
+categories: [Question, code]
+image: "Pandas-logo.webp"
+---
+
+Pandas 문제풀이 !!
+
+## 판다스 연습 문제
+
+### 학교 성적데이터
+
+```{python}
+import pandas as pd 
+df = pd.read_csv('c:\\Users\\USER\\Documents\\lsbigdata-gen4\\data\\grade.csv')
+df.head()
+df.info()
+
+df['student_id'] =df['student_id'].astype('object')
+```
+
+Q. df 데이터 프레임의 정보를 출력하고, 각 열의 데이터 타입을 확인하세요.
+
+```{python}
+df.info()
+```
+
+Q. midterm 점수가 85점 이상인 학생들의 데이터를 필터링하여 출력하세요.
+
+```{python}
+df[df['midterm'] >= 85]
+```
+
+Q. final 점수를 기준으로 데이터 프레임을 내림차순으로 정렬하고, 정렬된 데이터 프레임의 첫 5행을 출력하세요.
+
+```{python}
+sort_df = df.sort_values(by='final', ascending = False)
+sort_df
+```
+
+Q. gender 열을 기준으로 데이터 프레임을 그룹화하고, 각 그룹별 midterm과 final의 평균을 계산하여 출력하세요.
+
+```{python}
+gender_average = df.groupby('gender')[['midterm','final']].mean()
+gender_average
+```
+
+Q. student_id 열을 문자열 타입으로 변환하고, 변환된 데이터 프레임의 정보를 출력하세요.
+
+```{python}
+df['student_id'] = df['student_id'].astype(float)
+df.info()
+```
+
+Q. assignment 점수의 최대값과 최소값을 가지는 행을 각각 출력하세요.
+
+```{python}
+# 최대값 가지는 행
+max_score = df['assignment'].idxmax()
+df.loc[max_score]
+
+# 최소값 가지는 행
+min_score = df['assignment'].idxmin()
+df.loc[min_score]
+```
+
+Q. midterm, final, assignment 점수의 평균을 계산하여 average 열을 추가하고, 첫 5행을 출력하세요.
+
+```{python}
+df['average'] = df[['midterm','final','assignment']].mean(axis = 1)
+df.head(5)
+```
+
+Q. 아래의 추가 데이터를 생성하고, 기존 데이터 프레임과 student_id를 기준으로 **병합하여 출력하**세요. -\> **merge() !!!**
+
+```{python}
+# 추가 데이터 생성
+additional_data = {
+'student_id': ['1', '3', '5', '7', '9'],
+'club': ['Art', 'Science', 'Math', 'Music', 'Drama']
+}
+df_additional = pd.DataFrame(additional_data)
+
+print(df['student_id'].dtype)
+print(df_additional['student_id'].dtype)
+
+df['student_id'] = df['student_id'].astype(str)
+df_additional['student_id'] = df_additional['student_id'].astype(str)
+
+## 데이터 병합 -> merge() !!!
+merged_df = pd.merge(df, df_additional, on ='student_id',how = 'left')
+merged_df
+```
+
+Q. gender를 인덱스로, student_id를 열로 사용하여 average 점수에 
+대한 피벗 테이블을 생성하고 출력하세요.
+```{python}
+df_pivot = df.pivot_table(
+    index = 'gender',
+    columns = 'student_id',
+    values = 'average').reset_index()
+df_pivot
+```
+
+Q. midterm, final, assignment의 평균을 구하고, average 열을 생성하시오.성별, 성적 유형(assignment, average, final, midterm)별 
+평균 점수를 계산하시오.
+```{python}
+df['average'] = df[['midterm','final','assignment']].mean(axis=1)
+df
+
+# melt() 사용하여 데이터 프레임 변경!
+df_melted = pd.melt(df,
+            id_vars = ['student_id','name','gender'],
+            value_vars = ['assignment','final','average','midterm'],
+            var_name = 'variable',
+            value_name = 'score')
+
+
+average_score = df_melted.groupby(['gender','variable'])['score'].mean().reset_index()
+average_score
+```
+
+Q. midterm, final, assignment의 평균을 구하고, average 열을 생성하시오. 또한, 최대 평균 성적을 가진 학생의 이름과 평균 성적을 출력하시오.
+```{python}
+df['average'] = df[['midterm','final','assignment']].mean(axis=1)
+
+max_idx = df['average'].idxmax()
+df.loc[max_idx,['name','average']]
+```
+
+### 공유 자전거 데이터
+```{python}
+df = pd.read_csv('c:\\Users\\USER\\Documents\\lsbigdata-gen4\\data\\bike_data.csv')
+
+# 데이터 속성변환
+df = df.astype({'datetime': 'datetime64[ns]',
+                'weather': 'int64',
+                'season': 'object',
+                'workingday': 'object',
+                'holiday': 'object',
+                })
+
+```
+
+Q. 계절(season) == 1일 때, 가장 대여량이 많은 시간대(hour)을 구하시오.
+```{python}
+# 계절이 1인 부분만 추출
+df_sub = df.loc[df.season == 1, ]
+
+# 시간정보 추출
+df_sub['hour'] = df_sub['datetime'].dt.hour
+
+## 계절별 및 시간대별 대여량 합계 계산
+summary_data = (df_sub
+                .groupby(['season','hour'])
+                .agg({'count': 'sum'})
+                .reset_index())
+
+summary_data.loc[summary_data['count'].idxmax(), 'hour'] 
+df['count'].max()
+```
+
+
+Q. 각 계절(season)별 평균 대여량(count)을 구하시오.
+
+```{python}
+df.groupby('season')['count'].mean().reset_index()
+```
+
+Q. 특정 달(month) 동안의 총 대여량(count)을 구하시오.
+```{python}
+df['month'] = df['datetime'].dt.month
+
+df.groupby('month')['count'].sum().reset_index()
+
+# 1월의 총대여량 
+df[df['month'] == 1]['count'].sum()
+```
+
+Q. 가장 대여량이 많은 날짜를 구하시오.
+```{python}
+df['date'] = df['datetime'].dt.date
+
+df.groupby('date')['count'].sum().max()  # 가장 많은 대여량 합계
+df.groupby('date')['count'].sum().idxmax() # 가장 많은 대여량 날짜
+```
+
+
+Q. 시간대(hour)별 평균 대여량(count)을 구하시오.
+
+```{python}
+df['hour'] = df['datetime'].dt.hour
+
+df.groupby('hour')['count'].mean()
+```
+
+Q. 특정 요일(weekday) 동안의 총 대여량(count)을 구하시오.
+```{python}
+df['weekday'] = df['datetime'].dt.hour
+
+df.groupby('weekday')['count'].sum()
+
+#월요일 총 대여량 (월요일 = 0)
+df[df['weekday'] == 0]['count'].sum()
+
+```
+
+Q.  주어진 Bike Sharing 데이터를 사용하여 넓은 형식(wide format)에서 긴 형식(long format)으로 변환하시오. casual과 registered 열을 하나의 열로 변환하고, 각 기록의 대여 유형과 대여수를 포함하는 긴 형식 데이터프레임을 만드시오.
+
+```{python}
+df_melted = pd.melt(df,
+                    id_vars = ['datetime','season'],
+                    value_vars = ['casual','registered'],
+                    var_name = 'user_type',
+                    value_name = 'user_count')
+df_melted
+```
+
+Q. 이전에 생성한 긴 형식 데이터프레임을 활용하여 각 계절(season)별로 casual과 
+registered 사용자의 평균 대여 수(count)를 구하시오.
+```{python}
+
+df_melted.groupby(['season','user_type'])['user_count'].mean().reset_index()
+```
+
+
+### 로그 데이터
+```{python}
+df = pd.read_csv('c:\\Users\\USER\\Documents\\lsbigdata-gen4\\data\\logdata.csv')
+```
+
+Q. 로그 칼럼에서 연도 정보만 추출하시오.
+```{python}
+df['연도정보'] = df['로그'].str.extract(r'(\d+)')
+```
+
+Q. 로그 칼럼에서 모든 시간 정보를 추출하시오.
+```{python}
+df['시간정보'] = df['로그'].str.extract(r'(\d{2}:\d{2}:\d{2})')
+```
+
+Q. 로그 칼럼에서 한글 정보만 추출하시오.
+```{python}
+df['한글'] = df['로그'].str.extract(r'([가-힣]+)')
+```
+
+Q. 로그 칼럼에서 특수 문자를 제거하시오.
+```{python}
+df['로그'].str.replace(r'[^a-zA-Z0-9가-힣\s]', '',regex=True)
+```
+
+Q. 로그 칼럼에서 유저, Amount 값을 추출한 후 각 유저별 
+Amount의 평균값을 계산하시오.
+
+```{python}
+df['User'] = df['로그'].str.extract(r'User:\s*([가-힣]+)')
+df['Amount'] = df['로그'].str.extract(r'Amount:\s*(\d+)').astype(float)
+
+df.groupby('User')['Amount'].mean().reset_index()
+```
