@@ -1,5 +1,5 @@
 ---
-title: "Pandas 연습문제제"
+title: "Pandas 연습문제"
 date : "2025-03-13"
 author: "Jiwon Shin"
 categories: [Question, code]
