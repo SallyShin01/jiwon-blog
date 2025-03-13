@@ -122,3 +122,81 @@ df['브랜드'].str.lower()
 df['브랜드'].str.upper()
 df['브랜드'].str.title()
 ```
+
+특정 문자 포함 여부확인  
+str.contrains()를 통해 특정 문자 포함 여부 확인
+```{python}
+# 문자열 포함 여부
+df['브랜드에_a포함'] = df['브랜드'].str.contains('a')
+print(df[['브랜드', '브랜드에_a포함']].head(2))
+```
+
+특정 문자열 교체  
+str.replace()를 통해 특정 문자열 교체
+```{python}
+df['브랜드_언더스코어'] = df['브랜드'].str.replace('L', 'HHHHG')
+print(df[['브랜드', '브랜드_언더스코어']].head(2))
+```
+
+문자열 분할  
+str.split()를 통해 문자열을 분할
+```{python}
+# 문자열 분할
+df[['브랜드_첫부분', '브랜드_두번째', '브랜드_세번째']] = df['브랜드'].str.split('a', expand=True)
+print(df[['브랜드', '브랜드_첫부분', '브랜드_두번째', '브랜드_세번째']].head(2))
+```
+
+문자열 결합
+str.cat()를 통해 문자열을 결합
+```{python}
+# 문자열 결합
+df['제품_브랜드'] = df['가전제품'].str.cat(df['브랜드'], sep=', ')
+print(df[['가전제품', '제품_브랜드']].head(2))
+```
+
+문자열 공백제거
+str.strip()를 통해 문자열 앞 뒤 공백을 제거
+```{python}
+# 문자열 앞뒤 공백 제거
+df['가전제품'] = df['가전제품'].str.replace('전자레인지', ' 전자 레인지 ')
+df['가전제품_공백제거'] = df['가전제품'].str.strip()
+print(df[['가전제품', '가전제품_공백제거']].head(2))
+```
+
+### 정규표현식을 통한 문자열 추출
+```{python}
+data = {
+'주소': ['서울특별시 강남구! 테헤란로 123', 
+       '부산광역시 해운대@구 센텀중앙로? 45', 
+       '대구광역시 수성구 동대구로 77-4',
+       '경기도 안성시 서운면 바우덕이로 248']
+}
+df = pd.DataFrame(data)
+```
+
+```{python}
+df['주소'].str.extract(r'([가-힣]+광역시|[가-힣]+특별시)', expand = False)
+df['도시'] = df['주소'].str.extract(r'([가-힣]+광역시|[가-힣]+특별시)', expand=False)
+df
+```
+
+특수문자 추출 및 제거
+```{python}
+df['주소'].str.extractall(r'([^a-zA-Z0-9가-힣\s])')
+
+df['주소_특수문자제거'] = df['주소'].str.replace(r'[^a-zA-Z0-9가-힣\s]', '', regex=True)
+df
+```
+
+테헤란로, 센텀중앙로, 바우덕이로 같은 도로명 칼럼 만들기
+```{python}
+df['주소'] = df['주소'].str.replace(r'[^a-zA-Z0-9가-힣\s]', '', regex=True)
+df['도로명'] = df['주소'].str.extract(r'([가-힣]+로)',expand = False)
+df
+```
+
+숫자만 꺼내오려면?
+```{python}
+df['주소'].str.extract(r'([0-9]+)')
+```
+
