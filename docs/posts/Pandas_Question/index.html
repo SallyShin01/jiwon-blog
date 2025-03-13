@@ -9,7 +9,7 @@
 <meta name="author" content="Jiwon Shin">
 <meta name="dcterms.date" content="2025-03-13">
 
-<title>Pandas 연습문제제 – Jiwon Qmd 블로그</title>
+<title>Pandas 연습문제 – Jiwon Qmd 블로그</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Pandas 연습문제제</h1>
+      <h1 class="title">Pandas 연습문제</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Question</div>
                 <div class="quarto-category">code</div>
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="판다스-연습-문제">판다스 연습 문제</h2>
 <section id="학교-성적데이터" class="level3">
 <h3 class="anchored" data-anchor-id="학교-성적데이터">학교 성적데이터</h3>
-<div id="6916c48b" class="cell" data-execution_count="1">
+<div id="a1b31426" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'c:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">USER</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">lsbigdata-gen4</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">grade.csv'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df.head()</span>
@@ -219,7 +219,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. df 데이터 프레임의 정보를 출력하고, 각 열의 데이터 타입을 확인하세요.</p>
-<div id="548005fd" class="cell" data-execution_count="2">
+<div id="6edcc877" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -238,7 +238,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. midterm 점수가 85점 이상인 학생들의 데이터를 필터링하여 출력하세요.</p>
-<div id="590516f2" class="cell" data-execution_count="3">
+<div id="5a60057d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'midterm'</span>] <span class="op">&gt;=</span> <span class="dv">85</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -318,7 +318,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. final 점수를 기준으로 데이터 프레임을 내림차순으로 정렬하고, 정렬된 데이터 프레임의 첫 5행을 출력하세요.</p>
-<div id="2a704529" class="cell" data-execution_count="4">
+<div id="5e497430" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sort_df <span class="op">=</span> df.sort_values(by<span class="op">=</span><span class="st">'final'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sort_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -435,7 +435,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. gender 열을 기준으로 데이터 프레임을 그룹화하고, 각 그룹별 midterm과 final의 평균을 계산하여 출력하세요.</p>
-<div id="3c706e11" class="cell" data-execution_count="5">
+<div id="2a87b508" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gender_average <span class="op">=</span> df.groupby(<span class="st">'gender'</span>)[[<span class="st">'midterm'</span>,<span class="st">'final'</span>]].mean()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gender_average</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -473,7 +473,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. student_id 열을 문자열 타입으로 변환하고, 변환된 데이터 프레임의 정보를 출력하세요.</p>
-<div id="ecb3c2a6" class="cell" data-execution_count="6">
+<div id="c9914de2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'student_id'</span>] <span class="op">=</span> df[<span class="st">'student_id'</span>].astype(<span class="bu">float</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -493,7 +493,7 @@ memory usage: 612.0+ bytes</code></pre>
 </div>
 </div>
 <p>Q. assignment 점수의 최대값과 최소값을 가지는 행을 각각 출력하세요.</p>
-<div id="8bffe12d" class="cell" data-execution_count="7">
+<div id="e85f60d3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 최대값 가지는 행</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>max_score <span class="op">=</span> df[<span class="st">'assignment'</span>].idxmax()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df.loc[max_score]</span>
@@ -512,7 +512,7 @@ Name: 4, dtype: object</code></pre>
 </div>
 </div>
 <p>Q. midterm, final, assignment 점수의 평균을 계산하여 average 열을 추가하고, 첫 5행을 출력하세요.</p>
-<div id="70b0cf1e" class="cell" data-execution_count="8">
+<div id="ca2dc458" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'average'</span>] <span class="op">=</span> df[[<span class="st">'midterm'</span>,<span class="st">'final'</span>,<span class="st">'assignment'</span>]].mean(axis <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -590,7 +590,7 @@ Name: 4, dtype: object</code></pre>
 </div>
 </div>
 <p>Q. 아래의 추가 데이터를 생성하고, 기존 데이터 프레임과 student_id를 기준으로 <strong>병합하여 출력하</strong>세요. -&gt; <strong>merge() !!!</strong></p>
-<div id="0adaf41c" class="cell" data-execution_count="9">
+<div id="f679fd9b" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 추가 데이터 생성</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>additional_data <span class="op">=</span> {</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">'student_id'</span>: [<span class="st">'1'</span>, <span class="st">'3'</span>, <span class="st">'5'</span>, <span class="st">'7'</span>, <span class="st">'9'</span>],</span>
@@ -747,7 +747,7 @@ object</code></pre>
 </div>
 </div>
 <p>Q. gender를 인덱스로, student_id를 열로 사용하여 average 점수에 대한 피벗 테이블을 생성하고 출력하세요.</p>
-<div id="b6eae42d" class="cell" data-execution_count="10">
+<div id="4158c0f8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_pivot <span class="op">=</span> df.pivot_table(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> <span class="st">'gender'</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> <span class="st">'student_id'</span>,</span>
@@ -810,7 +810,7 @@ object</code></pre>
 </div>
 </div>
 <p>Q. midterm, final, assignment의 평균을 구하고, average 열을 생성하시오.성별, 성적 유형(assignment, average, final, midterm)별 평균 점수를 계산하시오.</p>
-<div id="47ff384d" class="cell" data-execution_count="11">
+<div id="8da2ec0b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'average'</span>] <span class="op">=</span> df[[<span class="st">'midterm'</span>,<span class="st">'final'</span>,<span class="st">'assignment'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -893,7 +893,7 @@ object</code></pre>
 </div>
 </div>
 <p>Q. midterm, final, assignment의 평균을 구하고, average 열을 생성하시오. 또한, 최대 평균 성적을 가진 학생의 이름과 평균 성적을 출력하시오.</p>
-<div id="9ce0c5e8" class="cell" data-execution_count="12">
+<div id="4619f8ac" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'average'</span>] <span class="op">=</span> df[[<span class="st">'midterm'</span>,<span class="st">'final'</span>,<span class="st">'assignment'</span>]].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>max_idx <span class="op">=</span> df[<span class="st">'average'</span>].idxmax()</span>
@@ -907,7 +907,7 @@ Name: 5, dtype: object</code></pre>
 </section>
 <section id="공유-자전거-데이터" class="level3">
 <h3 class="anchored" data-anchor-id="공유-자전거-데이터">공유 자전거 데이터</h3>
-<div id="ddb8a686" class="cell" data-execution_count="13">
+<div id="2933b798" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'c:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">USER</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">lsbigdata-gen4</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">bike_data.csv'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 속성변환</span></span>
@@ -919,7 +919,7 @@ Name: 5, dtype: object</code></pre>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Q. 계절(season) == 1일 때, 가장 대여량이 많은 시간대(hour)을 구하시오.</p>
-<div id="ec5fbbee" class="cell" data-execution_count="14">
+<div id="d5878e71" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 계절이 1인 부분만 추출</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="op">=</span> df.loc[df.season <span class="op">==</span> <span class="dv">1</span>, ]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,7 +935,7 @@ Name: 5, dtype: object</code></pre>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>summary_data.loc[summary_data[<span class="st">'count'</span>].idxmax(), <span class="st">'hour'</span>] </span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'count'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\USER\AppData\Local\Temp\ipykernel_16656\1114509147.py:5: SettingWithCopyWarning:
+<pre><code>C:\Users\USER\AppData\Local\Temp\ipykernel_19960\1114509147.py:5: SettingWithCopyWarning:
 
 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -949,7 +949,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Q. 각 계절(season)별 평균 대여량(count)을 구하시오.</p>
-<div id="68d71d4d" class="cell" data-execution_count="15">
+<div id="7d66ee4f" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'season'</span>)[<span class="st">'count'</span>].mean().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -991,7 +991,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Q. 특정 달(month) 동안의 총 대여량(count)을 구하시오.</p>
-<div id="51279176" class="cell" data-execution_count="16">
+<div id="a326be4b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'month'</span>] <span class="op">=</span> df[<span class="st">'datetime'</span>].dt.month</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'month'</span>)[<span class="st">'count'</span>].<span class="bu">sum</span>().reset_index()</span>
@@ -1003,7 +1003,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Q. 가장 대여량이 많은 날짜를 구하시오.</p>
-<div id="464f3990" class="cell" data-execution_count="17">
+<div id="fe398c41" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> df[<span class="st">'datetime'</span>].dt.date</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'date'</span>)[<span class="st">'count'</span>].<span class="bu">sum</span>().<span class="bu">max</span>()  <span class="co"># 가장 많은 대여량 합계</span></span>
@@ -1013,7 +1013,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Q. 시간대(hour)별 평균 대여량(count)을 구하시오.</p>
-<div id="0c243b1e" class="cell" data-execution_count="18">
+<div id="d2da3fe8" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'hour'</span>] <span class="op">=</span> df[<span class="st">'datetime'</span>].dt.hour</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'hour'</span>)[<span class="st">'count'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1047,7 +1047,7 @@ Name: count, dtype: float64</code></pre>
 </div>
 </div>
 <p>Q. 특정 요일(weekday) 동안의 총 대여량(count)을 구하시오.</p>
-<div id="3bca297f" class="cell" data-execution_count="19">
+<div id="bbc46372" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'weekday'</span>] <span class="op">=</span> df[<span class="st">'datetime'</span>].dt.hour</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'weekday'</span>)[<span class="st">'count'</span>].<span class="bu">sum</span>()</span>
@@ -1061,7 +1061,7 @@ Name: count, dtype: float64</code></pre>
 <ol start="17" type="A">
 <li>주어진 Bike Sharing 데이터를 사용하여 넓은 형식(wide format)에서 긴 형식(long format)으로 변환하시오. casual과 registered 열을 하나의 열로 변환하고, 각 기록의 대여 유형과 대여수를 포함하는 긴 형식 데이터프레임을 만드시오.</li>
 </ol>
-<div id="f6561e43" class="cell" data-execution_count="20">
+<div id="1c424858" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_melted <span class="op">=</span> pd.melt(df,</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                    id_vars <span class="op">=</span> [<span class="st">'datetime'</span>,<span class="st">'season'</span>],</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                    value_vars <span class="op">=</span> [<span class="st">'casual'</span>,<span class="st">'registered'</span>],</span>
@@ -1168,7 +1168,7 @@ Name: count, dtype: float64</code></pre>
 </div>
 </div>
 <p>Q. 이전에 생성한 긴 형식 데이터프레임을 활용하여 각 계절(season)별로 casual과 registered 사용자의 평균 대여 수(count)를 구하시오.</p>
-<div id="c3f425c3" class="cell" data-execution_count="21">
+<div id="0d85fc49" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_melted.groupby([<span class="st">'season'</span>,<span class="st">'user_type'</span>])[<span class="st">'user_count'</span>].mean().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
@@ -1241,23 +1241,23 @@ Name: count, dtype: float64</code></pre>
 </section>
 <section id="로그-데이터" class="level3">
 <h3 class="anchored" data-anchor-id="로그-데이터">로그 데이터</h3>
-<div id="ac815ece" class="cell" data-execution_count="22">
+<div id="68b3cbbd" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'c:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">USER</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">lsbigdata-gen4</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">logdata.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Q. 로그 칼럼에서 연도 정보만 추출하시오.</p>
-<div id="73cf669b" class="cell" data-execution_count="23">
+<div id="d3ea8833" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'연도정보'</span>] <span class="op">=</span> df[<span class="st">'로그'</span>].<span class="bu">str</span>.extract(<span class="vs">r'(\d+)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Q. 로그 칼럼에서 모든 시간 정보를 추출하시오.</p>
-<div id="08c2a719" class="cell" data-execution_count="24">
+<div id="7058784a" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'시간정보'</span>] <span class="op">=</span> df[<span class="st">'로그'</span>].<span class="bu">str</span>.extract(<span class="vs">r'(\d</span><span class="sc">{2}</span><span class="vs">:\d</span><span class="sc">{2}</span><span class="vs">:\d</span><span class="sc">{2}</span><span class="vs">)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Q. 로그 칼럼에서 한글 정보만 추출하시오.</p>
-<div id="71b4e3d8" class="cell" data-execution_count="25">
+<div id="d333cbdb" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'한글'</span>] <span class="op">=</span> df[<span class="st">'로그'</span>].<span class="bu">str</span>.extract(<span class="vs">r'([가-힣]+)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Q. 로그 칼럼에서 특수 문자를 제거하시오.</p>
-<div id="05fe7edb" class="cell" data-execution_count="26">
+<div id="e40569bf" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'로그'</span>].<span class="bu">str</span>.replace(<span class="vs">r'[^a-zA-Z0-9가-힣\s]'</span>, <span class="st">''</span>,regex<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>0         20240718 123456 User 홍길동 Action Login ID12345
@@ -1294,7 +1294,7 @@ Name: 로그, dtype: object</code></pre>
 </div>
 </div>
 <p>Q. 로그 칼럼에서 유저, Amount 값을 추출한 후 각 유저별 Amount의 평균값을 계산하시오.</p>
-<div id="86e34257" class="cell" data-execution_count="27">
+<div id="5160825e" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'User'</span>] <span class="op">=</span> df[<span class="st">'로그'</span>].<span class="bu">str</span>.extract(<span class="vs">r'User:\s*([가-힣]+)'</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Amount'</span>] <span class="op">=</span> df[<span class="st">'로그'</span>].<span class="bu">str</span>.extract(<span class="vs">r'Amount:\s*(\d+)'</span>).astype(<span class="bu">float</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
