@@ -260,3 +260,4 @@ df['Amount'] = df['로그'].str.extract(r'Amount:\s*(\d+)').astype(float)
 
 df.groupby('User')['Amount'].mean().reset_index()
 ```
+

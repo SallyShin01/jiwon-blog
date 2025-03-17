@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/visual.summary/index.html",
       "/posts/Pandas_Question/index.html",
       "/posts/Pandas-string.summary/index.html",
       "/posts/Pandas.summary/index.html",
